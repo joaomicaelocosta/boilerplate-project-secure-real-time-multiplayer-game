@@ -22,10 +22,10 @@ let spikeImage = new Image();
 
 const init = () => {
   // get images
-  meImage.src = 'public/img/green.png';
-  otherImage.src = 'public/img/white.png';
-  oxygenImage.src = 'public/img/oxygen.png';
-  spikeImage.src = 'public/img/spikedball.png';
+  meImage.src = 'public/img/star.png';
+  otherImage.src = 'public/img/sun.png';
+  oxygenImage.src = 'public/img/sweet.png';
+  spikeImage.src = 'public/img/cloud.png';
   
   // create user
   socket.on('init', ({ id, players, oxygen, spike }) => {
@@ -87,28 +87,28 @@ const update = () => {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // Set background color
-  context.fillStyle = '#1c4966';
+  context.fillStyle = '#57f281';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   // Create border for play field
-  context.strokeStyle = '#45b6fe';
+  context.strokeStyle = '#d9ffe3';
   context.strokeRect(dimension.minX, dimension.minY, dimension.arenaSizeX, dimension.arenaSizeY);
 
   // Controls text
-  context.fillStyle = '#45b6fe';
-  context.font = `13px 'Press Start 2P'`;
+  context.fillStyle = '#d9ffe3';
+  context.font = `13px 'Arial'`;
   context.textAlign = 'center';
   context.fillText('Controls', 80, 20);
   context.textAlign = 'center';
   context.fillText('WASD', 80, 40);
 
   // Game title
-  context.font = `40px 'Modak'`;
-  context.fillText('Bubble survivor', 300, 40);
+  context.font = `40px 'Arial'`;
+  context.fillText('Sweet star', 300, 40);
 
   if (playerEntity) {
     playerEntity.draw(context,meImage);
-    context.font = `26px 'Modak'`;
+    context.font = `26px 'Arial'`;
     context.fillText(playerEntity.calculateRank(playersList), 560, 40);
     playersList.forEach((player)=> {
        if (player.id !== playerEntity.id) {
