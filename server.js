@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const expect = require('chai');
 const socket = require('socket.io');
 const helmet = require('helmet');
+const nocache = require('nocache')
 
 const fccTestingRoutes = require('./routes/fcctesting.js');
 const runner = require('./test-runner.js');
@@ -17,10 +18,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // helmet part
-app.use(helmet.noSniff());
-app.use(helmet.xssFilter());
-app.use(helmet.noCache());
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 7.4.3' }));
+app.use(
+  helmet({
+    noSniff: true,
+    xssFilter: true,
+    hidePoweredBy: {
+      setTo: 'PHP 7.4.3',
+    },
+  })
+);
+app.use(nocache());
 
 // Index page (static HTML)
 app.route('/')
