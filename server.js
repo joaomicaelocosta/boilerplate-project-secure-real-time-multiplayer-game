@@ -5,6 +5,7 @@ const expect = require('chai');
 const socket = require('socket.io');
 const helmet = require('helmet');
 const nocache = require('nocache')
+const cors = require("cors")
 
 const fccTestingRoutes = require('./routes/fcctesting.js');
 const runner = require('./test-runner.js');
@@ -28,7 +29,7 @@ app.use(
   })
 );
 app.use(nocache());
-
+app.use(cors({origin: '*'})); //For FCC testing purposes only
 // Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
